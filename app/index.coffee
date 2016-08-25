@@ -4,5 +4,5 @@ Root = require './components/root'
 
 reactDom.render(
     react.createElement Root
-    document.getElementById('app')
+    document.querySelector 'main'
 );

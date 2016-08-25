@@ -2,7 +2,7 @@ module.exports =
   entry: './app/index.coffee'
 
   output:
-    path: '/output/',
+    path: 'output/',
     filename: 'bundle.js'
     publicPath: '/assets/'
   
