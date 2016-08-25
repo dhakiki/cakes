@@ -1,9 +1,10 @@
 module.exports =
-  entry: './src/app.coffee'
+  entry: './app/index.coffee'
 
   output:
     path: __dirname,
     filename: 'bundle.js'
+    publicPath: '/assets/'
   
   resolve:
     extensions: [''

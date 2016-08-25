@@ -1,7 +1,8 @@
 react = require 'react'
 reactDom = require 'react-dom'
+Root = require './components/root'
 
 reactDom.render(
-    react.DOM.div {}, 'Hello world'
+    react.createElement Root
     document.getElementById('app')
 );
