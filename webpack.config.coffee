@@ -2,7 +2,7 @@ module.exports =
   entry: './app/index.coffee'
 
   output:
-    path: __dirname,
+    path: '/output/',
     filename: 'bundle.js'
     publicPath: '/assets/'
   
@@ -14,7 +14,7 @@ module.exports =
 
   module:
     loaders: [
-      {test: /\.coffee$/,     loader: 'regenerator!coffee'}
+      {test: /\.coffee$/,     loader: 'coffee'}
       {test: /\.json$/,       loader: 'json'  }
       {test: /\.styl$/,       loader: 'style!css!stylus'}
       {test: /\.css$/,        loader: 'style!css'}
