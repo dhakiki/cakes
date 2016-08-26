@@ -1,14 +1,35 @@
 express = require 'express'
+apiRouter = express.Router()
+pageRouter = express.Router()
 path = require 'path'
 
 app = express()
 
 app.set 'view engine', 'ejs'
 app.set 'views', path.join(__dirname, '../')
-app.get '*', (req, res) ->
+
+pageRouter.get '*', (req, res, next) ->
   res.render 'index',
     publicPath: process.env.PUBLIC_PATH ? 'http://localhost:8080/assets/'
 
+
+# middleware that is specific to this router
+apiRouter.use (req, res, next) ->
+  console.log 'Time: ', Date.now()
+  next()
+
+# define the home page route
+apiRouter.get '/', (req, res) ->
+  console.log 'load'
+  res.send 'root thingz'
+
+# define the about route
+apiRouter.get '/popular', (req, res) ->
+  console.log 'welcome'
+  res.send 'popular cake thingz'
+
+app.use '/api', apiRouter
+app.use '/', pageRouter
 app.listen 3000
 console.log 'Server listening on 3000'
 
