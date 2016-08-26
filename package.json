@@ -21,6 +21,8 @@
     "coffee-loader": "^0.7.2",
     "css-loader": "^0.23.1",
     "ejs": "^2.5.1",
+    "react-redux": "^4.4.5",
+    "redux": "^3.5.2",
     "style-loader": "^0.13.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^2.1.1",
