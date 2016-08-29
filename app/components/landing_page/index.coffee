@@ -8,7 +8,6 @@ class LandingPage extends react.Component
 
   render: ->
     div {},
-      console.log this.props
       div {}, this.props.counter
       button onClick: @_increment, '+'
       button onClick: @_decrement, '-'
