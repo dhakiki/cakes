@@ -1,9 +1,13 @@
 require '../../styles'
 react = require 'react'
+reactRedux = require 'react-redux'
 classnames = require 'classnames'
 {div, ul, li, select, span, option} = react.DOM
 
 class Layout extends react.Component
+
+  componentWillMount: ->
+    @props.dispatch type: 'fetchStoreData', data: @props.params.store_id
 
   render: ->
     div {},
@@ -18,4 +22,4 @@ class Layout extends react.Component
 
       this.props.children
 
-module.exports = Layout
+module.exports = reactRedux.connect()(Layout)

@@ -13,9 +13,9 @@ class Root extends react.Component
 
   routes =
     div {},
-      Redirect from: '/', to: '/welcome'
+      Redirect from: '/', to: '/:store_id/welcome'
       Route path: '/', component: Layout,
-        Route path: '/welcome', component: LandingPage
+        Route path: '/:store_id/welcome', component: LandingPage
 
   render: ->
     Router history: browserHistory,

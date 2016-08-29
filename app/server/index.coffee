@@ -28,6 +28,16 @@ apiRouter.get '/popular', (req, res) ->
   console.log 'welcome'
   res.send 'popular cake thingz'
 
+# define the about route
+apiRouter.get '/baker_info', (req, res) ->
+  console.log 'baker info', req
+  console.log req.headers.id
+  #TODO: remove ID hax
+  if req.headers.id isnt "1"
+    res.status(500).send 'Baker not found'
+  else
+    res.json info: 'cake info thingz'
+
 app.use '/api', apiRouter
 app.use '/', pageRouter
 app.listen 3000
