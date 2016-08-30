@@ -9,12 +9,10 @@ module.exports =
 
   (state = initialState, action) ->
     switch action.type
-      when 'INCREMENT' then return counter: state.counter + 1
-      when 'DECREMENT' then return counter: state.counter - 1
+      when 'INCREMENT' then return _.merge {}, state, counter: state.counter + 1
+      when 'DECREMENT' then return _.merge {}, state, counter: state.counter - 1
       when 'updateInfo'
-        console.log 'thingz', action.data
-        return info: action.data.json.info, storeId: action.data.id, counter: state.counter
+        return _.merge {}, state, action.data
       when 'addError'
-        console.log 'thingz', action.data
-        return errMsg: action.data, status: 'error'
+        return _.merge {}, action.data, status: 'error'
       else return state

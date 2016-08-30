@@ -12,9 +12,6 @@ class LandingPage extends react.Component
 
   render: ->
     div {},
-      console.log 'STATUS', @props.status
-      console.log 'COUNTER', @props.counter
-      console.log 'INFO', @props.info
       switch @props.status
         when 'error'
           div {},
@@ -34,7 +31,6 @@ class LandingPage extends react.Component
     @props.dispatch increment
 
 mapStateToProps = (state) =>
-  console.log 'STATE', state
   counter: state.counter
   status: state.status
   errMsg: state.errMsg
