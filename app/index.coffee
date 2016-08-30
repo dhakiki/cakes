@@ -1,12 +1,18 @@
 react = require 'react'
 reactDom = require 'react-dom'
 reducer = require './reducers'
-{createStore} = require 'redux'
+{createStore, applyMiddleware} = require 'redux'
+thunkMiddleware = require 'redux-thunk'
 Provider = react.createFactory require('react-redux').Provider
 
 Root = require './components/root'
 
-store = createStore reducer
+store = createStore(
+  reducer,
+  applyMiddleware(
+    thunkMiddleware.default
+  )
+)
 
 render = =>
   reactDom.render(

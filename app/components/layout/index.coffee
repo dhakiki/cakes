@@ -3,11 +3,12 @@ react = require 'react'
 reactRedux = require 'react-redux'
 classnames = require 'classnames'
 {div, ul, li, select, span, option} = react.DOM
+{fetchStoreData} = require '../../actions'
 
 class Layout extends react.Component
 
   componentWillMount: ->
-    @props.dispatch type: 'fetchStoreData', data: @props.params.store_id
+    @props.dispatch fetchStoreData @props.params.store_id
 
   render: ->
     div {},
