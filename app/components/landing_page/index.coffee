@@ -21,20 +21,27 @@ class LandingPage extends react.Component
         else
           div {},
             div {}, @props.info.name
-            ul className: 'social-media-nav',
-              li {},
-                a href: "http://www.facebook.com/#{@props.info.facebook}", target: '_blank',
-                  i className: 'fa fa-facebook-official'
-              li {},
-                a href: "http://www.instagram.com/#{@props.info.instagram}", target: '_blank',
-                  i className: 'fa fa-instagram'
-              li {},
-                a href: "http://www.twitter.com/#{@props.info.twitter}", target: '_blank',
-                  i className: 'fa fa-twitter'
-            div {}, "#{@props.info.address1} #{@props.info.address2}"
-            div {}, "#{@props.info.city}, #{@props.info.state} #{@props.info.zip}"
-            div {}, "Hours: #{@props.info.hours}"
+            @_renderSocialMediaNav()
+            @_renderAddress()
             a href: "http://#{@props.info.website}", target: '_blank', 'Visit Website'
+
+  _renderSocialMediaNav: ->
+    ul className: 'social-media-nav',
+      li {},
+        a href: "http://www.facebook.com/#{@props.info.facebook}", target: '_blank',
+          i className: 'fa fa-facebook-official'
+      li {},
+        a href: "http://www.instagram.com/#{@props.info.instagram}", target: '_blank',
+          i className: 'fa fa-instagram'
+      li {},
+        a href: "http://www.twitter.com/#{@props.info.twitter}", target: '_blank',
+          i className: 'fa fa-twitter'
+
+  _renderAddress: ->
+    div {},
+      div {}, "#{@props.info.address1} #{@props.info.address2}"
+      div {}, "#{@props.info.city}, #{@props.info.state} #{@props.info.zip}"
+      div {}, "Hours: #{@props.info.hours}"
 
 mapStateToProps = (state) =>
   status: state.status
