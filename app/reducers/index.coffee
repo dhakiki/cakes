@@ -1,7 +1,6 @@
 request = require 'superagent'
 _ = require 'lodash'
 initialState =
-  counter: 0
   status: 'init'
   errMsg: undefined
 

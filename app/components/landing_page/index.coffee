@@ -2,8 +2,7 @@ react = require 'react'
 redux = require 'redux'
 reactRedux = require 'react-redux'
 classnames = require 'classnames'
-{button, div, select, span, option, ul, li} = react.DOM
-{increment, decrement} = require '../../actions'
+{button, div, select, span, option, ul, li, i, a} = react.DOM
 
 class LandingPage extends react.Component
 
@@ -21,27 +20,23 @@ class LandingPage extends react.Component
           div {}, 'loading data'
         else
           div {},
-            div {}, @props.counter
-            button onClick: @_increment, '+'
-            button onClick: @_decrement, '-'
             div {}, @props.info.name
-            ul {},
-              li {}, @props.info.facebook
-              li {}, @props.info.instagram
-              li {}, @props.info.twitter
+            ul className: 'social-media-nav',
+              li {},
+                a href: "http://www.facebook.com/#{@props.info.facebook}", target: '_blank',
+                  i className: 'fa fa-facebook-official'
+              li {},
+                a href: "http://www.instagram.com/#{@props.info.instagram}", target: '_blank',
+                  i className: 'fa fa-instagram'
+              li {},
+                a href: "http://www.twitter.com/#{@props.info.twitter}", target: '_blank',
+                  i className: 'fa fa-twitter'
             div {}, "#{@props.info.address1} #{@props.info.address2}"
             div {}, "#{@props.info.city}, #{@props.info.state} #{@props.info.zip}"
             div {}, "Hours: #{@props.info.hours}"
-            div {}, @props.info.website
-
-  _increment: =>
-    @props.dispatch increment
-
-  _decrement: =>
-    @props.dispatch increment
+            a href: "http://#{@props.info.website}", target: '_blank', 'Visit Website'
 
 mapStateToProps = (state) =>
-  counter: state.counter
   status: state.status
   errMsg: state.errMsg
   info: state.info

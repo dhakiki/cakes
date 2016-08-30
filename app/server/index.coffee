@@ -38,17 +38,17 @@ apiRouter.get '/baker_info', (req, res) ->
   else
     obj =
       info:
-        name: 'Doreen\'s Bakery'
+        name: 'Lady M Cake Boutique'
         address1: '400 S Woodbury Rd'
         address2: '#101'
         city: 'Los Angeles'
         state: 'CA'
         zip: '90024'
         hours: 'M-Sat 9AM - 6PM, Sun 11AM - 5PM'
-        website: 'doreensbakery.com'
-        instagram: '/dbakery'
-        facebook: '/dbakery'
-        twitter: '/dbakery'
+        website: 'www.ladym.com'
+        instagram: 'ladymcakes'
+        facebook: 'ladymcakeboutique'
+        twitter: 'ladymcakes'
     res.json obj
 
 app.use '/api', apiRouter

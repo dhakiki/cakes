@@ -18,9 +18,3 @@ module.exports =
         .end (err, res) =>
           return dispatch receiveError err.response.text if err?
           dispatch receiveStoreData storeId, res.body
-
-  increment:
-    type: 'INCREMENT'
-
-  decrement:
-    type: 'DECREMENT'

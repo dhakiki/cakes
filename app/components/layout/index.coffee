@@ -14,7 +14,8 @@ class Layout extends react.Component
     div {},
       div className: 'nav',
         div className: 'nav-contents',
-          div className: 'nav-title', 'Doreen\'s Bakery'
+          div className: 'nav-title',
+            @props.info.name if @props.status is 'loaded'
           div className: 'nav-controls',
             ul {},
               li className: 'link', onClick: (=> console.log 'clicked'), 'Welcome, User!'
@@ -23,4 +24,11 @@ class Layout extends react.Component
 
       this.props.children
 
-module.exports = reactRedux.connect()(Layout)
+mapStateToProps = (state) =>
+  status: state.status
+  info: state.info
+  storeId: state.storeId
+
+module.exports = reactRedux.connect(
+  mapStateToProps
+)(Layout)
