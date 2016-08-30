@@ -36,7 +36,20 @@ apiRouter.get '/baker_info', (req, res) ->
   if req.headers.id isnt "1"
     res.status(500).send 'Baker not found'
   else
-    res.json info: 'cake info thingz'
+    obj =
+      info:
+        name: 'Doreen\'s Bakery'
+        address1: '400 S Woodbury Rd'
+        address2: '#101'
+        city: 'Los Angeles'
+        state: 'CA'
+        zip: '90024'
+        hours: 'M-Sat 9AM - 6PM, Sun 11AM - 5PM'
+        website: 'doreensbakery.com'
+        instagram: '/dbakery'
+        facebook: '/dbakery'
+        twitter: '/dbakery'
+    res.json obj
 
 app.use '/api', apiRouter
 app.use '/', pageRouter

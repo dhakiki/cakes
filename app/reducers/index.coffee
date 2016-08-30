@@ -2,7 +2,7 @@ request = require 'superagent'
 _ = require 'lodash'
 initialState =
   counter: 0
-  status: ''
+  status: 'init'
   errMsg: undefined
 
 module.exports =
@@ -12,7 +12,7 @@ module.exports =
       when 'INCREMENT' then return _.merge {}, state, counter: state.counter + 1
       when 'DECREMENT' then return _.merge {}, state, counter: state.counter - 1
       when 'updateInfo'
-        return _.merge {}, state, action.data
+        return _.merge {}, state, status: 'loaded', action.data
       when 'addError'
         return _.merge {}, action.data, status: 'error'
       else return state
