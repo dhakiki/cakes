@@ -3,15 +3,11 @@ react = require 'react'
 reactRedux = require 'react-redux'
 classnames = require 'classnames'
 {div, ul, li, select, span, option} = react.DOM
-{fetchStoreData} = require '../../actions'
 
 class Layout extends react.Component
 
-  componentWillMount: ->
-    @props.dispatch fetchStoreData @props.params.store_id
-
   render: ->
-    div {},
+    div className: 'app-container',
       div className: 'nav',
         div className: 'nav-contents',
           div className: 'nav-title',
@@ -22,7 +18,8 @@ class Layout extends react.Component
               li className: 'link', onClick: (=> console.log 'clicked'), 'Create an Account'
               li className: 'link', onClick: (=> console.log 'clicked'), 'Cart (0)'
 
-      this.props.children
+      div className: 'app-contents',
+        this.props.children
 
 mapStateToProps = (state) =>
   status: state.status

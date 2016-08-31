@@ -4,6 +4,7 @@ Redirect = react.createFactory require 'react-router/lib/Redirect'
 Route = react.createFactory require 'react-router/lib/Route'
 Router = react.createFactory require 'react-router/lib/Router'
 LandingPage = require '../landing_page'
+SplashPage = require '../splash_page'
 Layout = require '../layout'
 browserHistory = require 'react-router/lib/browserHistory'
 {div} = react.DOM
@@ -13,12 +14,14 @@ class Root extends react.Component
 
   routes =
     div {},
-      Redirect from: '/', to: '/:store_id/welcome'
+      Redirect from: '/', to: '/welcome'
       Route path: '/', component: Layout,
+        Route path: '/welcome', component: SplashPage
         Route path: '/:store_id/welcome', component: LandingPage
 
   render: ->
-    Router history: browserHistory,
-      routes
+    div className: 'root',
+      Router history: browserHistory,
+        routes
 
 module.exports = Root
