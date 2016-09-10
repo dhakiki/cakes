@@ -3,12 +3,19 @@ Layout = require '../layout'
 Redirect = react.createFactory require 'react-router/lib/Redirect'
 Route = react.createFactory require 'react-router/lib/Route'
 Router = react.createFactory require 'react-router/lib/Router'
-LandingPage = require '../landing_page'
-SplashPage = require '../splash_page'
+#main layout component
 Layout = require '../layout'
-browserHistory = require 'react-router/lib/browserHistory'
-{div} = react.DOM
 
+#subcomponents
+BakerLanding = require '../baker_landing'
+CakeBuilder = require '../cake_builder'
+CustomForm = require '../custom_form'
+PopularCakes = require '../popular_cakes'
+SplashPage = require '../splash_page'
+
+browserHistory = require 'react-router/lib/browserHistory'
+
+{div} = react.DOM
 
 class Root extends react.Component
 
@@ -17,7 +24,10 @@ class Root extends react.Component
       Redirect from: '/', to: '/welcome'
       Route path: '/', component: Layout,
         Route path: '/welcome', component: SplashPage
-        Route path: '/:store_id/welcome', component: LandingPage
+        Route path: '/:store_id/welcome', component: BakerLanding
+        Route path: '/:store_id/popular-cakes', component: PopularCakes
+        Route path: '/:store_id/cake-builder', component: CakeBuilder
+        Route path: '/:store_id/custom-form', component: CustomForm
 
   render: ->
     div className: 'root',

@@ -13,27 +13,16 @@ pageRouter.get '*', (req, res, next) ->
     publicPath: process.env.PUBLIC_PATH ? 'http://localhost:8080/assets/'
 
 
+# TODO: remove this once you get middleware
 # middleware that is specific to this router
 apiRouter.use (req, res, next) ->
   console.log 'Time: ', Date.now()
   next()
 
-# define the home page route
-apiRouter.get '/', (req, res) ->
-  console.log 'load'
-  res.send 'root thingz'
-
-# define the about route
-apiRouter.get '/popular', (req, res) ->
-  console.log 'welcome'
-  res.send 'popular cake thingz'
-
-# define the about route
-apiRouter.get '/baker_info', (req, res) ->
-  console.log 'baker info', req
-  console.log req.headers.id
+apiRouter.get '/:id/baker_info', (req, res) ->
+  console.log 'params', req.params
   #TODO: remove ID hax
-  if req.headers.id isnt "1"
+  if req.params.id isnt "1"
     res.status(500).send 'Baker not found'
   else
     obj =
@@ -49,6 +38,29 @@ apiRouter.get '/baker_info', (req, res) ->
         instagram: 'ladymcakes'
         facebook: 'ladymcakeboutique'
         twitter: 'ladymcakes'
+        telephone: '(800) 867-5309'
+    res.json obj
+
+apiRouter.get '/:id/popular_categories', (req, res) ->
+  console.log 'params', req.params
+  #TODO: remove ID hax
+  if req.params.id isnt "1"
+    res.status(500).send 'Baker not found'
+  else
+    console.log 'looking good'
+    obj =
+      categories:
+        [
+            name: 'Birthday (Kids - Boy)'
+            id: '1'
+          ,
+            name: 'Birthday (Kids - Girl)'
+            id: '2'
+          ,
+            name: 'Bat Mitzvah'
+            id: '3'
+        ]
+    console.log obj
     res.json obj
 
 app.use '/api', apiRouter

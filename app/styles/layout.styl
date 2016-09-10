@@ -1,4 +1,5 @@
 html, body, .root, main, .app-container
+  background #eeebe6
   font-family 'Arial'
   height 100%
   margin 0
@@ -16,8 +17,12 @@ html, body, .root, main, .app-container
 
   .nav
     flex none
-    border-bottom 2px solid black
-    padding 0 1rem
+    font-weight bold
+    background #625e60
+    border-bottom 5px solid #f8cbca
+    color #eeebe6
+    overflow hidden
+    padding 2rem 1rem 0.5rem 1rem
     z-index 1
 
   .nav-contents
@@ -26,6 +31,7 @@ html, body, .root, main, .app-container
 
   .nav-title
     flex none
+    font-size 1.25rem
     margin 0.5rem
 
   .nav-controls
@@ -38,9 +44,13 @@ html, body, .root, main, .app-container
       flex-direction row
       margin 0
 
+    .error-status
+      flex 1 0 auto
+      text-align center
+
 li
   list-style-type none
-  margin 0.5rem
+  margin 0.5rem 0.2rem
     
 
 h1

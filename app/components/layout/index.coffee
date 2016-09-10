@@ -6,20 +6,31 @@ classnames = require 'classnames'
 
 class Layout extends react.Component
 
+  componentWillMount: ->
+    @_resetCartOnLocal()
+
   render: ->
     div className: 'app-container',
       div className: 'nav',
         div className: 'nav-contents',
           div className: 'nav-title',
+            console.log @props, 'aaaaaah'
             @props.info.name if @props.status is 'loaded'
           div className: 'nav-controls',
             ul {},
-              li className: 'link', onClick: (=> console.log 'clicked'), 'Welcome, User!'
+              li className: 'link', 'Welcome, User!'
               li className: 'link', onClick: (=> console.log 'clicked'), 'Create an Account'
-              li className: 'link', onClick: (=> console.log 'clicked'), 'Cart (0)'
+              li className: 'link', onClick: (=> console.log 'clicked'), "Cart (#{@_gatherCartCount()})"
 
       div className: 'app-contents',
         this.props.children
+
+  _gatherCartCount: ->
+    console.log JSON.parse(localStorage.cakesCart).length
+    JSON.parse(localStorage.cakesCart).length
+
+  _resetCartOnLocal: ->
+    localStorage.setItem 'cakesCart', JSON.stringify []
 
 mapStateToProps = (state) =>
   status: state.status
