@@ -13,6 +13,7 @@ receiveError = (error) ->
 
 setLoadingState = -> type: 'loading'
 setLoadedState = -> type: 'loaded'
+setCategoryLoadingState = (storeId, categoryId) -> type: 'categoryLoading', data: {storeId, categoryId}
 
 
 fetchStoreData = (storeId) ->
@@ -49,4 +50,7 @@ module.exports =
       .then =>
         dispatch setLoadedState()
 
+  fetchCategoryContent: (storeId, categoryId) ->
+    (dispatch) ->
+      dispatch setCategoryLoadingState storeId, categoryId
 
