@@ -20,7 +20,6 @@ apiRouter.use (req, res, next) ->
   next()
 
 apiRouter.get '/:id/baker_info', (req, res) ->
-  console.log 'params', req.params
   #TODO: remove ID hax
   if req.params.id isnt "1"
     res.status(500).send 'Baker not found'
@@ -47,7 +46,6 @@ apiRouter.get '/:id/popular_categories', (req, res) ->
   if req.params.id isnt "1"
     res.status(500).send 'Baker not found'
   else
-    console.log 'looking good'
     obj =
       categories:
         [
@@ -60,7 +58,6 @@ apiRouter.get '/:id/popular_categories', (req, res) ->
             name: 'Bat Mitzvah'
             id: '3'
         ]
-    console.log obj
     res.json obj
 
 app.use '/api', apiRouter

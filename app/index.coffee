@@ -11,34 +11,15 @@ Provider = react.createFactory require('react-redux').Provider
 logger = createLogger()
 
 Root = require './components/root'
-#console.log reduxMulti.default
 
-#store = createStore(
-#  reducer,
-#  applyMiddleware(
-#    thunkMiddleware.default,
-#    reduxMulti.default
-#  )
-#)
-
-########
-# Add middleware to allow our action creators to return functions and arrays
-createStoreWithMiddleware = applyMiddleware(
-  thunkMiddleware.default,
-  reduxMulti.default,
-  logger
-)(createStore)
-
-# Ensure our listeners are only called once, even when one of the above
-# middleware call the underlying store's `dispatch` multiple times
-createStoreWithBatching = batchedSubscribe(
-  (fn) => fn()
-)(createStoreWithMiddleware)
-
-# Create a store with our application reducer
-store = createStoreWithBatching(appReducer)
-
-########
+store = createStore(
+  appReducer,
+  applyMiddleware(
+    thunkMiddleware.default,
+    reduxMulti.default,
+    logger
+  )
+)
 
 render = =>
   reactDom.render(

@@ -30,7 +30,6 @@ fetchPopularCategories = (storeId) ->
       results = yield request.get "/api/#{storeId}/popular_categories", { headers: {'Accept': 'application/json'}}
       console.log {results}
       dispatch receivePopularCategories storeId, results.data
-      dispatch setLoadedState()
     catch err
       dispatch receiveError err.response.text
 
@@ -41,6 +40,8 @@ module.exports =
       dispatch setLoadingState()
       dispatch fetchStoreData(storeId)
       dispatch fetchPopularCategories(storeId)
+      .then =>
+        dispatch setLoadedState()
 
 
 

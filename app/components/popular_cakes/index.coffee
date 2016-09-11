@@ -7,12 +7,8 @@ class PopularCakes extends react.Component
   componentWillMount: ->
     @props.dispatch testEverything @props.params.store_id
 
-  componentWillReceiveProps: (nextProps) ->
-    console.log {nextProps}
-
   render: ->
     div className: 'popular-cakes',
-      #console.log @props.status, 'heywill'
       switch @props.status
         when 'error'
           div className: 'error-status',
@@ -20,11 +16,9 @@ class PopularCakes extends react.Component
         when 'init', 'loading'
           div {}, 'loading data'
         else
-          #console.log 'rendering', @props
           div {}, @props.categories[0].name
 
 mapStateToProps = (state) =>
-  console.log 'updating', state
   Object.assign {}, state,
     status: state.status
     info: state.info
