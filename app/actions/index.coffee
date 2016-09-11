@@ -33,13 +33,20 @@ fetchPopularCategories = (storeId) ->
 
 module.exports =
 
-  testEverything: (storeId) ->
-    co.wrap (dispatch) ->
+  #TODO: figure out how to allow components to make these requests instead of combining them here like so
+  fetchPopularCakesData: (storeId) ->
+    (dispatch) ->
       dispatch setLoadingState()
       dispatch fetchStoreData(storeId)
       dispatch fetchPopularCategories(storeId)
       .then =>
         dispatch setLoadedState()
 
+  fetchBakerLandingData: (storeId) ->
+    (dispatch) ->
+      dispatch setLoadingState()
+      dispatch fetchStoreData(storeId)
+      .then =>
+        dispatch setLoadedState()
 
 

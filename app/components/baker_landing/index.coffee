@@ -3,12 +3,12 @@ redux = require 'redux'
 reactRedux = require 'react-redux'
 classnames = require 'classnames'
 {button, div, select, h3, h2, span, option, ul, li, i, a, img} = react.DOM
-{fetchStoreData} = require '../../actions'
+{fetchBakerLandingData} = require '../../actions'
 
 class LandingPage extends react.Component
 
   componentWillMount: ->
-    @props.dispatch fetchStoreData @props.params.store_id
+    @props.dispatch fetchBakerLandingData @props.params.store_id
 
 
   render: ->

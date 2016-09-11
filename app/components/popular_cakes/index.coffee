@@ -1,11 +1,11 @@
 react = require 'react'
 reactRedux = require 'react-redux'
 {div} = react.DOM
-{testEverything} = require '../../actions'
+{fetchPopularCakesData} = require '../../actions'
 
 class PopularCakes extends react.Component
   componentWillMount: ->
-    @props.dispatch testEverything @props.params.store_id
+    @props.dispatch fetchPopularCakesData @props.params.store_id
 
   render: ->
     div className: 'popular-cakes',
@@ -16,15 +16,15 @@ class PopularCakes extends react.Component
         when 'init', 'loading'
           div {}, 'loading data'
         else
-          div {}, @props.categories[0].name
+          div {},
+            @props.categories.map (category) ->
+              div key: category.id, category.name
 
 mapStateToProps = (state) =>
-  Object.assign {}, state,
-    status: state.status
-    info: state.info
-    categories: state.categories
+  status: state.status
+  info: state.info
+  categories: state.categories
 
-# TODO: figure out how to subscribe to diff component's store
 module.exports = reactRedux.connect(
   mapStateToProps
 )(PopularCakes)
