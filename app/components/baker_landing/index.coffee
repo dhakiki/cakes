@@ -23,7 +23,6 @@ class LandingPage extends react.Component
           div className: 'baker-contents',
             div className: 'baker-header',
               div className: 'baker-info',
-                console.log @props, 'weee'
                 img src: 'https://scontent.xx.fbcdn.net/v/t1.0-1/c1.0.50.50/p50x50/282553_232862060087690_4214243_n.jpg?oh=cba6f9958c46b7f70377114a4057e7a7&oe=584327FC'
                 h3 className: 'baker-name',
                   @props.info.name

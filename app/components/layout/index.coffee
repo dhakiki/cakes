@@ -14,7 +14,6 @@ class Layout extends react.Component
       div className: 'nav',
         div className: 'nav-contents',
           div className: 'nav-title',
-            console.log @props, 'aaaaaah'
             @props.info.name if @props.status is 'loaded'
           div className: 'nav-controls',
             ul {},
@@ -26,7 +25,6 @@ class Layout extends react.Component
         this.props.children
 
   _gatherCartCount: ->
-    console.log JSON.parse(localStorage.cakesCart).length
     JSON.parse(localStorage.cakesCart).length
 
   _resetCartOnLocal: ->

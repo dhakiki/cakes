@@ -6,7 +6,6 @@ receiveStoreData = (storeId, responseJSON) ->
   type: 'updateInfo', data: _.merge responseJSON, id: storeId
 
 receivePopularCategories = (storeId, responseJSON) ->
-  #console.log responseJSON
   type: 'updatePopularCategories', data: _.merge responseJSON, id: storeId
 
 receiveError = (error) ->
@@ -28,7 +27,6 @@ fetchPopularCategories = (storeId) ->
   co.wrap (dispatch) =>
     try
       results = yield request.get "/api/#{storeId}/popular_categories", { headers: {'Accept': 'application/json'}}
-      console.log {results}
       dispatch receivePopularCategories storeId, results.data
     catch err
       dispatch receiveError err.response.text
