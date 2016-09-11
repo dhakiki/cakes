@@ -46,7 +46,7 @@ PopularCakes = react.createClass
     if existentIndex isnt -1
       updatedIndeces.splice existentIndex, 1
     else
-      unless @props.categoryContent?.getIn [@props.params.store_id,id]
+      unless @props.categoryContent?.getIn [@props.params.store_id, id]
         @props.dispatch fetchCategoryContent @props.params.store_id, id
       updatedIndeces.push index
     @setState expandedIndeces: updatedIndeces
