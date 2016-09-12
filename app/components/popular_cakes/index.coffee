@@ -1,4 +1,5 @@
 react = require 'react'
+_ = require 'lodash'
 reactRedux = require 'react-redux'
 {div, i, h3, h2, h4, h5, ul, li, a, img, span} = react.DOM
 {fetchPopularCakesData, fetchCategoryContent} = require '../../actions'
@@ -6,6 +7,7 @@ reactRedux = require 'react-redux'
 PopularCakes = react.createClass
   getInitialState: ->
     expandedIndeces: []
+    itemViewing: undefined
 
   componentWillMount: ->
     @props.dispatch fetchPopularCakesData @props.params.store_id
@@ -48,7 +50,7 @@ PopularCakes = react.createClass
                         else
                           div className: 'category-items',
                             @props.categoryContent.getIn([@props.params.store_id, category.id, 'items']).map (item) ->
-                              div className: 'category-item', key: item.id,
+                              div className: 'category-item', key: item.id, onClick:(=> @_showDetailsModal item, category.id),
                                 img src: item.img
 
   _renderSocialMediaNav: ->
@@ -73,6 +75,9 @@ PopularCakes = react.createClass
         @props.dispatch fetchCategoryContent @props.params.store_id, id
       updatedIndeces.push index
     @setState expandedIndeces: updatedIndeces
+
+  _showDetailsModal: (item, categoryId) ->
+    @setState itemViewing: _.merge item, {categoryId}
 
 mapStateToProps = (state) =>
   status: state.status
