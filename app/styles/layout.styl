@@ -4,50 +4,66 @@ html, body, .root, main, .app-container
   height 100%
   margin 0
 
-  .app-container
-    display flex
-    flex-direction column
-    padding 0
+.app-container
+  display flex
+  flex-direction column
+  padding 0
 
-  .app-contents
-    display flex
-    flex-direction column
-    flex 1 0 auto
-    margin 2rem 7rem
-    position relative
+.app-contents
+  display flex
+  flex-direction column
+  flex 1 0 auto
+  margin 2rem 7rem
+  position relative
 
-  .nav
-    flex none
-    font-weight bold
-    background #625e60
-    border-bottom 5px solid #f8cbca
-    color #eeebe6
-    overflow hidden
-    padding 2rem 1rem 0.5rem 1rem
-    z-index 1
+.nav
+  flex none
+  font-weight bold
+  background #625e60
+  border-bottom 5px solid #f8cbca
+  color #eeebe6
+  overflow hidden
+  padding 2rem 1rem 0.5rem 1rem
+  z-index 1
 
-  .nav-contents
+.nav-contents
+  display flex
+  flex-direction row
+
+.nav-title
+  flex none
+  font-size 1.25rem
+  margin 0.5rem
+
+.social-media-nav
+  display flex
+  margin 0
+  padding 0
+
+.baker-header
+  display flex
+  flex none
+  flex-wrap wrap
+
+  .baker-info
+    flex-grow 2
+
+    .baker-name
+      margin-bottom 0
+
+.nav-controls
+  display flex
+  flex 1 0 auto
+  justify-content flex-end
+
+  ul
     display flex
     flex-direction row
+    margin 0
 
-  .nav-title
-    flex none
-    font-size 1.25rem
-    margin 0.5rem
-
-  .nav-controls
-    display flex
+  .error-status
     flex 1 0 auto
-    justify-content flex-end
-
-    ul
-      display flex
-      flex-direction row
-      margin 0
-
-    .error-status
-      flex 1 0 auto
-      text-align center
+    text-align center
 
 li
   list-style-type none

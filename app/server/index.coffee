@@ -90,6 +90,15 @@ apiRouter.get '/:id/popular_categories', (req, res) ->
           ,
             name: 'Bat Mitzvah'
             id: '3'
+          ,
+            name: 'Baby Shower'
+            id: '4'
+          ,
+            name: 'Bridal Shower'
+            id: '5'
+          ,
+            name: 'Wedding'
+            id: '6'
         ]
     res.json obj
 
