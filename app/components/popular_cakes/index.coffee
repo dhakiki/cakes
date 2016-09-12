@@ -1,6 +1,6 @@
 react = require 'react'
 reactRedux = require 'react-redux'
-{div, i, span} = react.DOM
+{div, i, img, span} = react.DOM
 {fetchPopularCakesData, fetchCategoryContent} = require '../../actions'
 
 PopularCakes = react.createClass
@@ -37,8 +37,10 @@ PopularCakes = react.createClass
                         div {}, 'error loading content'
                       when undefined then ''
                       else
-                        @props.categoryContent.getIn [@props.params.store_id, category.id, 'items'].map (item) ->
-                          div {}, 'stuff'
+                        div className: 'category-items',
+                          @props.categoryContent.getIn([@props.params.store_id, category.id, 'items']).map (item) ->
+                            div className: 'category-item', key: item.id,
+                              img src: item.img
 
   _requestCategoryDetails: (id, index) ->
     updatedIndeces = @state.expandedIndeces

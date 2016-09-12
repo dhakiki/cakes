@@ -3,24 +3,27 @@ co = require 'co'
 _ = require 'lodash'
 
 receiveStoreData = (storeId, responseJSON) ->
-  type: 'updateInfo', data: _.merge responseJSON, id: storeId
+  type: 'updateInfo', data: responseJSON, params: {storeId}
 
 receivePopularCategories = (storeId, responseJSON) ->
-  type: 'updatePopularCategories', data: _.merge responseJSON, id: storeId
+  type: 'updatePopularCategories', data: responseJSON, params: {storeId}
+
+receiveCategoryOptions = (storeId, categoryId, responseJSON) ->
+  type: 'updateCategoryOptions', data: responseJSON, params: {storeId, categoryId}
 
 receiveError = (error) ->
   type: 'addError', data: errMsg: error
 
 setLoadingState = -> type: 'loading'
 setLoadedState = -> type: 'loaded'
-setCategoryLoadingState = (storeId, categoryId) -> type: 'categoryLoading', data: {storeId, categoryId}
+setCategoryLoadingState = (storeId, categoryId, status) -> type: 'categoryLoadingUpdate', data: {status}, params: {storeId, categoryId}
 
-
-fetchStoreData = (storeId) ->
+fetchCategoryOptions = (storeId, categoryId) ->
   co.wrap (dispatch) =>
     try
-      results = yield request.get "/api/#{storeId}/baker_info", { headers: {'Accept': 'application/json'}}
-      dispatch receiveStoreData storeId, results.data
+      results = yield request.get "/api/#{storeId}/category_options/#{categoryId}", { headers: {'Accept': 'application/json'}}
+      console.log {results}
+      dispatch receiveCategoryOptions storeId, categoryId, results.data
     catch err
       dispatch receiveError err.response.text
 
@@ -29,6 +32,14 @@ fetchPopularCategories = (storeId) ->
     try
       results = yield request.get "/api/#{storeId}/popular_categories", { headers: {'Accept': 'application/json'}}
       dispatch receivePopularCategories storeId, results.data
+    catch err
+      dispatch receiveError err.response.text
+
+fetchStoreData = (storeId) ->
+  co.wrap (dispatch) =>
+    try
+      results = yield request.get "/api/#{storeId}/baker_info", { headers: {'Accept': 'application/json'}}
+      dispatch receiveStoreData storeId, results.data
     catch err
       dispatch receiveError err.response.text
 
@@ -52,5 +63,8 @@ module.exports =
 
   fetchCategoryContent: (storeId, categoryId) ->
     (dispatch) ->
-      dispatch setCategoryLoadingState storeId, categoryId
+      dispatch setCategoryLoadingState storeId, categoryId, 'loading'
+      dispatch fetchCategoryOptions(storeId, categoryId)
+        .then =>
+          dispatch setCategoryLoadingState storeId, categoryId, 'loaded'
 
