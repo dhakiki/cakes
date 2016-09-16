@@ -22,7 +22,6 @@ fetchCategoryOptions = (storeId, categoryId) ->
   co.wrap (dispatch) =>
     try
       results = yield request.get "/api/#{storeId}/category_options/#{categoryId}", { headers: {'Accept': 'application/json'}}
-      console.log {results}
       dispatch receiveCategoryOptions storeId, categoryId, results.data
     catch err
       dispatch receiveError err.response.text
