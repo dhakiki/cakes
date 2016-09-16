@@ -4,6 +4,8 @@ reactRedux = require 'react-redux'
 classnames = require 'classnames'
 {button, img, div, h1, h3, h4, select, span, option, ul, li, i, a} = react.DOM
 
+require './splash_page.styl'
+
 class SplashPage extends react.Component
 
   render: ->

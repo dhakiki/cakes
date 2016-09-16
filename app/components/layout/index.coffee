@@ -1,8 +1,9 @@
-require '../../styles'
 react = require 'react'
 reactRedux = require 'react-redux'
 classnames = require 'classnames'
 {div, ul, li, select, span, option} = react.DOM
+
+require './layout.styl'
 
 class Layout extends react.Component
 

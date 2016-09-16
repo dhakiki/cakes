@@ -5,6 +5,8 @@ classnames = require 'classnames'
 {button, div, select, h3, h2, span, option, ul, li, i, a, img} = react.DOM
 {fetchBakerLandingData} = require '../../actions'
 
+require './baker_landing.styl'
+
 class LandingPage extends react.Component
 
   componentWillMount: ->

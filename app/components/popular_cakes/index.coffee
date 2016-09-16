@@ -4,6 +4,8 @@ reactRedux = require 'react-redux'
 {div, i, h3, h2, h4, h5, ul, li, a, img, span} = react.DOM
 {fetchPopularCakesData, fetchCategoryContent} = require '../../actions'
 
+require './popular_cakes.styl'
+
 Modal = react.createFactory require '../shared_components/modal'
 Button = react.createFactory require '../shared_components/button'
 
