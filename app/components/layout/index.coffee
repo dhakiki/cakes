@@ -4,6 +4,7 @@ classnames = require 'classnames'
 {div, ul, li, select, span, option} = react.DOM
 Immutable = require 'immutable'
 
+require '../../styles'
 require './layout.styl'
 
 class Layout extends react.Component
