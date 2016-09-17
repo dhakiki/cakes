@@ -2,7 +2,7 @@ react = require 'react'
 _ = require 'lodash'
 reactRedux = require 'react-redux'
 {div, i, h3, h2, h4, h5, ul, li, a, img, span} = react.DOM
-{fetchPopularCakesData, fetchCategoryContent} = require '../../actions'
+{addItemToCart, fetchPopularCakesData, fetchCategoryContent} = require '../../actions'
 
 require './popular_cakes.styl'
 
@@ -75,9 +75,8 @@ PopularCakes = react.createClass
         Button onClick: @_addViewingItemToCart, 'Add to Cart'
 
   _addViewingItemToCart: ->
-    cakesCart = JSON.parse localStorage.cakesCart
-    cakesCart.push @state.itemViewing
-    localStorage.setItem 'cakesCart', JSON.stringify cakesCart
+    @props.dispatch addItemToCart @state.itemViewing
+    @setState itemViewing: undefined
 
   _clearItemViewing: ->
     @setState itemViewing: undefined
@@ -123,10 +122,11 @@ PopularCakes = react.createClass
     @setState itemViewing: _.merge item, {categoryId}
 
 mapStateToProps = (state) =>
-  status: state.status
   info: state.info
+  cart: state.cart
   categories: state.categories
   categoryContent: state.categoryContent
+  status: state.status
 
 module.exports = reactRedux.connect(
   mapStateToProps

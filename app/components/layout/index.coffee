@@ -2,13 +2,14 @@ react = require 'react'
 reactRedux = require 'react-redux'
 classnames = require 'classnames'
 {div, ul, li, select, span, option} = react.DOM
+Immutable = require 'immutable'
 
 require './layout.styl'
 
 class Layout extends react.Component
 
   componentWillMount: ->
-    @_resetCartOnLocal()
+    @_fetchCartFromLocal()
 
   render: ->
     div className: 'app-container',
@@ -20,20 +21,19 @@ class Layout extends react.Component
             ul {},
               li className: 'link', 'Welcome, User!'
               li className: 'link', onClick: (=> console.log 'clicked'), 'Create an Account'
-              li className: 'link', onClick: (=> console.log 'clicked'), "Cart (#{@_gatherCartCount()})"
+              li className: 'link', onClick: (=> console.log 'clicked'), "Cart (#{@props.cart.size})"
 
       div className: 'app-contents',
         this.props.children
 
-  _gatherCartCount: ->
-    JSON.parse(localStorage.cakesCart).length
-
-  _resetCartOnLocal: ->
-    localStorage.setItem 'cakesCart', JSON.stringify []
+  _fetchCartFromLocal: ->
+    cart = Immutable.fromJS(JSON.parse(localStorage.cakesCart) or [])
+    @props.dispatch type: 'setCart', data: {cart}
 
 mapStateToProps = (state) =>
-  status: state.status
+  cart: state.cart
   info: state.info
+  status: state.status
   storeId: state.storeId
 
 module.exports = reactRedux.connect(
