@@ -75,7 +75,9 @@ PopularCakes = react.createClass
         Button onClick: @_addViewingItemToCart, 'Add to Cart'
 
   _addViewingItemToCart: ->
-    @props.dispatch addItemToCart @state.itemViewing
+    itemExistsInCart = @props.cart.filter (item) =>
+      item is @state.itemViewing
+    @props.dispatch addItemToCart @state.itemViewing unless itemExistsInCart?.size
     @setState itemViewing: undefined
 
   _clearItemViewing: ->

@@ -28,7 +28,8 @@ class Layout extends react.Component
         this.props.children
 
   _fetchCartFromLocal: ->
-    cart = Immutable.fromJS(JSON.parse(localStorage.cakesCart) or [])
+    cart = Immutable.fromJS []
+    cart = Immutable.fromJS JSON.parse localStorage.cakesCart if localStorage.cakesCart
     @props.dispatch type: 'setCart', data: {cart}
 
 mapStateToProps = (state) =>
