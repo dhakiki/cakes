@@ -1,7 +1,7 @@
 react = require 'react'
 reactRedux = require 'react-redux'
 classnames = require 'classnames'
-{div, ul, li, select, span, option} = react.DOM
+{a, div, ul, li, select, span, option} = react.DOM
 Immutable = require 'immutable'
 
 require '../../styles'
@@ -22,7 +22,8 @@ class Layout extends react.Component
             ul {},
               li className: 'link', 'Welcome, User!'
               li className: 'link', onClick: (=> console.log 'clicked'), 'Create an Account'
-              li className: 'link', onClick: (=> console.log 'clicked'), "Cart (#{@props.cart.size})"
+              a className: 'link', href: "http://localhost:3000/cart",
+                li {}, "Cart (#{@props.cart.size})"
 
       div className: 'app-contents',
         this.props.children

@@ -9,6 +9,7 @@ Layout = require '../layout'
 #subcomponents
 BakerLanding = require '../baker_landing'
 CakeBuilder = require '../cake_builder'
+Cart = require '../cart'
 CustomForm = require '../custom_form'
 PopularCakes = require '../popular_cakes'
 SplashPage = require '../splash_page'
@@ -24,6 +25,7 @@ class Root extends react.Component
       Redirect from: '/', to: '/welcome'
       Route path: '/', component: Layout,
         Route path: '/welcome', component: SplashPage
+        Route path: '/cart', component: Cart
         Route path: '/:store_id/welcome', component: BakerLanding
         Route path: '/:store_id/popular-cakes', component: PopularCakes
         Route path: '/:store_id/cake-builder', component: CakeBuilder
