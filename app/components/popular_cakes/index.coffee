@@ -92,23 +92,24 @@ PopularCakes = react.createClass
     @props.categoryContent?.getIn [@props.params.store_id, id, item]
 
   _renderBakerHeader: ->
+    {name} = @props.info.get @props.params.store_id
     div className: 'baker-header',
       div className: 'baker-info',
         img src: 'https://scontent.xx.fbcdn.net/v/t1.0-1/c1.0.50.50/p50x50/282553_232862060087690_4214243_n.jpg?oh=cba6f9958c46b7f70377114a4057e7a7&oe=584327FC'
-        h3 className: 'baker-name',
-          @props.info.name
+        h3 className: 'baker-name', name
         @_renderSocialMediaNav()
 
   _renderSocialMediaNav: ->
+    {facebook, instagram, twitter} = @props.info.get @props.params.store_id
     ul className: 'social-media-nav',
       li {},
-        a className: 'link', href: "http://www.facebook.com/#{@props.info.facebook}", target: '_blank',
+        a className: 'link', href: "http://www.facebook.com/#{facebook}", target: '_blank',
           i className: 'fa fa-facebook-official'
       li {},
-        a className: 'link', href: "http://www.instagram.com/#{@props.info.instagram}", target: '_blank',
+        a className: 'link', href: "http://www.instagram.com/#{instagram}", target: '_blank',
           i className: 'fa fa-instagram'
       li {},
-        a className: 'link', href: "http://www.twitter.com/#{@props.info.twitter}", target: '_blank',
+        a className: 'link', href: "http://www.twitter.com/#{twitter}", target: '_blank',
           i className: 'fa fa-twitter'
 
   _requestCategoryDetails: (id, index) ->
@@ -126,7 +127,7 @@ PopularCakes = react.createClass
     @setState itemViewing: Immutable.fromJS _.merge item, {categoryId}
 
 mapStateToProps = (state) =>
-  info: state.info
+  info: state.bakerInfo
   cart: state.cart
   categories: state.categories
   categoryContent: state.categoryContent

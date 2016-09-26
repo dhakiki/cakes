@@ -2,10 +2,11 @@ request = require 'superagent'
 _ = require 'lodash'
 {Map, List} = require 'immutable'
 initialState =
-  status: 'init'
-  errMsg: undefined
+  bakerInfo: Map()
   categoryContent: Map()
   cart: List()
+  errMsg: undefined
+  status: 'init'
 
 module.exports =
 
@@ -28,7 +29,8 @@ module.exports =
         categoryContent = state.categoryContent.setIn [action.params.storeId, action.params.categoryId, 'items'], action.data
         return _.merge {}, state, {categoryContent}
       when 'updateInfo'
-        return _.merge {}, state, action.data
+        bakerInfo = state.bakerInfo.set action.params.storeId, action.data.info
+        return _.merge {}, state, {bakerInfo}
       when 'updatePopularCategories'
         return _.merge {}, state, action.data
       when 'setCart'
