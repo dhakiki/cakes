@@ -23,13 +23,18 @@ class Layout extends react.Component
               li className: 'link', 'Welcome, User!'
               li className: 'link', onClick: (=> console.log 'clicked'), 'Create an Account'
               a className: 'link', href: "http://localhost:3000/cart",
-                li {}, "Cart (#{@props.cart.size})"
+                li {}, "Cart (#{@_fetchCartTotal()})"
 
       div className: 'app-contents',
         this.props.children
 
+  _fetchCartTotal: ->
+    total = 0
+    @props.cart.toArray().forEach (cart) -> total += cart.size
+    total
+
   _fetchCartFromLocal: ->
-    cart = Immutable.fromJS []
+    cart = Immutable.fromJS {}
     cart = Immutable.fromJS JSON.parse localStorage.cakesCart if localStorage.cakesCart
     @props.dispatch type: 'setCart', data: {cart}
 

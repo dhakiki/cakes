@@ -4,6 +4,8 @@ reactRedux = require 'react-redux'
 {div, i, h3, h2, h4, h5, ul, li, a, img, span} = react.DOM
 {addItemToCart, fetchPopularCakesData, fetchCategoryContent} = require '../../actions'
 
+Immutable = require 'immutable'
+
 require './popular_cakes.styl'
 
 Modal = react.createFactory require '../shared_components/modal'
@@ -58,7 +60,7 @@ PopularCakes = react.createClass
       @_renderDetailsModal() if @state.itemViewing
 
   _renderDetailsModal: ->
-    {image_url, price, name, id, feedCount, ingredients} = @state.itemViewing
+    {image_url, price, name, id, feedCount, ingredients} = @state.itemViewing.toJS()
     Modal title: 'Item Details', onClose: @_clearItemViewing,
       img src: image_url
       div className: 'item-details',
@@ -75,9 +77,9 @@ PopularCakes = react.createClass
         Button onClick: @_addViewingItemToCart, 'Add to Cart'
 
   _addViewingItemToCart: ->
-    itemExistsInCart = @props.cart.filter (item) =>
-      item is @state.itemViewing
-    @props.dispatch addItemToCart @state.itemViewing unless itemExistsInCart?.size
+    itemExistsInCart = @props.cart.get(@props.params.store_id)?.filter (item) =>
+      Immutable.is item, @state.itemViewing
+    @props.dispatch addItemToCart @props.params.store_id, @state.itemViewing unless itemExistsInCart?.size
     @setState itemViewing: undefined
 
   _clearItemViewing: ->
@@ -121,7 +123,7 @@ PopularCakes = react.createClass
     @setState expandedIndeces: updatedIndeces
 
   _showDetailsModal: (item, categoryId) ->
-    @setState itemViewing: _.merge item, {categoryId}
+    @setState itemViewing: Immutable.fromJS _.merge item, {categoryId}
 
 mapStateToProps = (state) =>
   info: state.info

@@ -14,7 +14,9 @@ module.exports =
       when 'addError'
         return _.merge {}, action.data, status: 'error'
       when 'addToCart'
-        cart = state.cart.push action.data
+        storeCart = state.cart.get(action.data.storeId) or List()
+        storeCart = storeCart.push action.data.item
+        cart = state.cart.set action.data.storeId, storeCart
         localStorage.setItem 'cakesCart', JSON.stringify cart.toJS()
         return _.merge {}, state, {cart}
       when 'categoryLoadingUpdate'

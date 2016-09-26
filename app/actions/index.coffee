@@ -44,8 +44,8 @@ fetchStoreData = (storeId) ->
 
 module.exports =
 
-  addItemToCart: (item) ->
-    type: 'addToCart', data: item
+  addItemToCart: (storeId, item) ->
+    type: 'addToCart', data: {storeId, item}
 
   #TODO: figure out how to allow components to make these requests instead of combining them here like so
   fetchPopularCakesData: (storeId) ->
