@@ -1,17 +1,84 @@
 react = require 'react'
 reactRedux = require 'react-redux'
-{div, h2, h3, span} = react.DOM
+{a, div, h2, h3, h4, i, img, input, span} = react.DOM
+{fetchBakerLandingData} = require '../../actions'
 
 require './cart.styl'
 
-class Cart extends react.Component
+Cart = react.createClass
+
+  componentWillMount: ->
+    storeIds = Object.keys @props.cart.toJS()
+    #TODO: make this less hackey after MVP by allowing multiple store requests
+    storeIds.map (storeId) =>
+      @props.dispatch fetchBakerLandingData storeId unless @props.info.get storeId
 
   render: ->
     div className: 'cart',
-      h3 {}, 'Cart'
+      switch @props.status
+        when 'error'
+          div className: 'error-status',
+            h2 {}, "Error: #{@props.errMsg}"
+        when 'init', 'loading'
+          div {}, 'loading data'
+        else
+          h3 {}, 'Cart'
+          div {},
+            span {}, @_generateSubtotalItems()
+            span className: 'label', @_generateSubtotalValue()
+            div className: 'cart-content', @_renderCartContent()
+
+  _renderCartContent: ->
+    storeIds = Object.keys @props.cart.toJS()
+    storeIds.map (storeId, index) =>
+      div className: 'baker-cart', key: index,
+        a href: '/1/welcome',
+          h3 {}, @props.info.get(storeId).name
+        div className: 'baker-cart-items',
+          @props.cart.get(storeId).map (item, index) =>
+            @_renderCartItem item, index
+
+  _renderCartItem: (item, index) ->
+    div className: 'cart-item', key: index,
+      div className: 'item-category image',
+        img src: item.get 'image_url'
+      @_renderDescription item
+      @_renderConfiguration item
+      @_renderAction item
+
+  _renderDescription: (item) ->
+    div className: 'item-category description',
+      div {}, item.get 'name'
       div {},
-        span {}, @_generateSubtotalItems()
-        span className: 'label', @_generateSubtotalValue()
+        span className: 'label', 'Cost: '
+        span {}, item.get 'price'
+      div {},
+        span className: 'label', 'Feeds: '
+        span {}, item.get 'feedCount'
+
+  _renderConfiguration: (item) ->
+    div className: 'item-category configuration',
+      div {},
+        div className: 'label', 'Personalize Message'
+        span {},
+          input type: 'text'
+        div className: 'label', 'Location'
+        div {},
+          span className: 'loc-option',
+            input type: 'radio', value: 'base'
+            span {}, 'Base'
+          span className: 'loc-option',
+            input type: 'radio', value: 'cake'
+            span {}, 'Cake'
+
+  _renderAction: (item) ->
+    div className: 'item-category action',
+      i className: 'fa fa-trash'
+      div className: 'label', 'Delete'
+
+
+
+
 
   _generateSubtotalItems: ->
     numItems = @_fetchCartTotal()
@@ -35,6 +102,7 @@ class Cart extends react.Component
 mapStateToProps = (state) =>
   info: state.bakerInfo
   cart: state.cart
+  status: state.status
 
 module.exports = reactRedux.connect(
   mapStateToProps
