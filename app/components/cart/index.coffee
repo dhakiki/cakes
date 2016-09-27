@@ -1,7 +1,7 @@
 react = require 'react'
 reactRedux = require 'react-redux'
 {a, div, h2, h3, h4, i, img, input, span} = react.DOM
-{fetchBakerLandingData} = require '../../actions'
+{fetchBakerLandingData, removeItemFromCart} = require '../../actions'
 
 require './cart.styl'
 
@@ -36,15 +36,15 @@ Cart = react.createClass
           h3 {}, @props.info.get(storeId).name
         div className: 'baker-cart-items',
           @props.cart.get(storeId).map (item, index) =>
-            @_renderCartItem item, index
+            @_renderCartItem item, storeId, index
 
-  _renderCartItem: (item, index) ->
+  _renderCartItem: (item, storeId, index) ->
     div className: 'cart-item', key: index,
       div className: 'item-category image',
         img src: item.get 'image_url'
       @_renderDescription item
       @_renderConfiguration item
-      @_renderAction item
+      @_renderAction storeId, item
 
   _renderDescription: (item) ->
     div className: 'item-category description',
@@ -71,14 +71,10 @@ Cart = react.createClass
             input type: 'radio', value: 'cake'
             span {}, 'Cake'
 
-  _renderAction: (item) ->
-    div className: 'item-category action',
+  _renderAction: (storeId, item) ->
+    div className: 'item-category action link', onClick: (=> @_deleteFromCart item, storeId),
       i className: 'fa fa-trash'
       div className: 'label', 'Delete'
-
-
-
-
 
   _generateSubtotalItems: ->
     numItems = @_fetchCartTotal()
@@ -98,6 +94,9 @@ Cart = react.createClass
     total = 0
     @props.cart.toArray().forEach (cart) -> total += cart.size
     total
+
+  _deleteFromCart: (item, storeId) ->
+    @props.dispatch removeItemFromCart storeId, item
 
 mapStateToProps = (state) =>
   info: state.bakerInfo

@@ -1,10 +1,10 @@
 request = require 'superagent'
 _ = require 'lodash'
-{Map, List} = require 'immutable'
+Immutable = require 'immutable'
 initialState =
-  bakerInfo: Map()
-  categoryContent: Map()
-  cart: List()
+  bakerInfo: Immutable.Map()
+  categoryContent: Immutable.Map()
+  cart: Immutable.List()
   errMsg: undefined
   status: 'init'
 
@@ -15,7 +15,7 @@ module.exports =
       when 'addError'
         return _.merge {}, action.data, status: 'error'
       when 'addToCart'
-        storeCart = state.cart.get(action.data.storeId) or List()
+        storeCart = state.cart.get(action.data.storeId) or Immutable.List()
         storeCart = storeCart.push action.data.item
         cart = state.cart.set action.data.storeId, storeCart
         localStorage.setItem 'cakesCart', JSON.stringify cart.toJS()
@@ -25,6 +25,12 @@ module.exports =
         return _.merge {}, state, {categoryContent}
       when 'loading' then return _.merge {}, state, status: 'loading'
       when 'loaded' then return _.merge {}, state, status: 'loaded'
+      when 'removeFromCart'
+        storeCart = state.cart.get action.data.storeId
+        storeCart = storeCart.filter (item) -> not Immutable.is item, action.data.item
+        cart = state.cart.set action.data.storeId, storeCart
+        localStorage.setItem 'cakesCart', JSON.stringify cart.toJS()
+        return _.merge {}, state, {cart}
       when 'updateCategoryOptions'
         categoryContent = state.categoryContent.setIn [action.params.storeId, action.params.categoryId, 'items'], action.data
         return _.merge {}, state, {categoryContent}

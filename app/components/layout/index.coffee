@@ -17,7 +17,7 @@ class Layout extends react.Component
       div className: 'nav',
         div className: 'nav-contents',
           div className: 'nav-title',
-            @props.info.get(@props.params.store_id).name if @props.status is 'loaded'
+            @props.info.get(@props.params.store_id)?.name or 'Cakes' if @props.status is 'loaded'
           div className: 'nav-controls',
             ul {},
               li className: 'link', 'Welcome, User!'
