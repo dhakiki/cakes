@@ -1,5 +1,16 @@
-$teal = #3B2E23
+$teal = #766d65
 $dark-gray = #F27376
 $light-gray = #FFFFFF
 $pink = #4C4741
 $shadow-gray = #888888
+$blue = lightblue
+
+clearfix()
+  zoom 1
+  &:after
+  &:before
+    content ""
+    display table
+  &:after
+    clear both
+

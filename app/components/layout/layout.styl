@@ -1,26 +1,25 @@
 @import '../../styles/variables.styl'
 
 html, body, .root, main, .app-container
-  background $light-gray
   font-family 'Arial'
   height 100%
   margin 0
 
+.root
+  background url('http://www.pptbackgrounds.org/uploads/gray-swirl-border-backgrounds-wallpapers.jpg')
+  background-repeat no-repeat
+  background-size cover
+
 .app-container
-  display flex
-  flex-direction column
+  background: rgba(255,255,255,0.8)
   padding 0
 
 .app-contents
-  display flex
-  flex-direction column
-  flex 1 0 auto
   position relative
 
 .nav
   background $dark-gray
   box-shadow 0 0.1rem 2rem $shadow-gray
-  flex none
   font-weight bold
   color $light-gray
   overflow hidden
@@ -30,46 +29,30 @@ html, body, .root, main, .app-container
   a
     color $light-gray
 
-.nav-contents
-  display flex
-  flex-direction row
-
 .nav-title
-  flex none
   font-size 1.25rem
+  float left
   margin 0.5rem
 
 .social-media-nav
-  display flex
   margin 0
   padding 0
 
-.baker-header
-  display flex
-  flex none
-  flex-wrap wrap
-
-  .baker-info
-    flex-grow 2
-
-    .baker-name
-      margin-bottom 0
+.baker-name
+  margin-bottom 0
 
 .nav-controls
-  display flex
-  flex 1 0 auto
-  justify-content flex-end
+  float right
+  margin 0.75rem
 
   ul
-    display flex
-    flex-direction row
     margin 0
 
   .error-status
-    flex 1 0 auto
     text-align center
 
 li
+  display inline
   list-style-type none
   margin 0.5rem 0.2rem
     

@@ -24,22 +24,27 @@ class LandingPage extends react.Component
           {name, website} = @props.info.get @props.params.store_id
           div className: 'baker-contents',
             div className: 'baker-header',
+              div className: 'logo', style: background: 'url(http://www.womensmafia.com/wp-content/uploads/2011/12/Lady-M-Logo-JPEG.jpg)', ''
               div className: 'baker-info',
-                img src: 'https://scontent.xx.fbcdn.net/v/t1.0-1/c1.0.50.50/p50x50/282553_232862060087690_4214243_n.jpg?oh=cba6f9958c46b7f70377114a4057e7a7&oe=584327FC'
                 h3 className: 'baker-name', name
                 @_renderSocialMediaNav()
                 @_renderAddress()
                 a className: 'link', href: "http://#{website}", target: '_blank', 'Visit Website'
-              div className: 'baker-actions',
-                div className: 'actions',
-                  div className: 'options',
-                    #TODO: fix url to point to root without hax
-                    a className: classnames('action-item', 'link'), href: "http://localhost:3000/1/popular-cakes",
-                      i className: 'fa fa-birthday-cake'
-                    a className: classnames('action-item', 'link'), href: "http://localhost:3000/1/cake-builder",
-                      i className: 'fa fa-heart-o'
-                    a className: classnames('action-item', 'link'), href: "http://localhost:3000/1/custom-form",
-                      i className: 'fa fa-camera'
+            div className: 'baker-actions',
+              div className: 'actions',
+                #TODO: fix url to point to root without hax
+                a className: classnames('action-item', 'link'), href: "http://localhost:3000/1/popular-cakes",
+                  div className: 'action-icon',
+                    i className: 'fa fa-birthday-cake'
+                  div className: 'label', 'View Popular Cakes'
+                a className: classnames('action-item', 'link'), href: "http://localhost:3000/1/cake-builder",
+                  div className: 'action-icon',
+                    i className: 'fa fa-heart-o'
+                  div className: 'label', 'Cake Builder'
+                a className: classnames('action-item', 'link'), href: "http://localhost:3000/1/custom-form",
+                  div className: 'action-icon',
+                    i className: 'fa fa-camera'
+                  div className: 'label', 'Send Custom Form'
             @_renderRecentWork()
 
   _renderSocialMediaNav: ->
@@ -68,6 +73,10 @@ class LandingPage extends react.Component
       h3 {}, 'Recent Work'
       div className: 'baker-work',
         div className: 'recent-imgs',
+          div className: 'image-sub'
+          div className: 'image-sub'
+          div className: 'image-sub'
+          div className: 'image-sub'
           div className: 'image-sub'
           div className: 'image-sub'
           div className: 'image-sub'
