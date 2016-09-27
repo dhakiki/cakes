@@ -46,7 +46,7 @@ apiRouter.get '/:id/category_options/:cat_id', (req, res) ->
         name: 'Birthday Gal'
         id: '1'
         ingredients: 'Vanilla-Flavored Cake, Vanila-Flavored Buttercream'
-        image_url: 'http://www.dgreetings.com/birthday/images/creative-birthday-cake-image.jpg'
+        image_url: 'https://s-media-cache-ak0.pinimg.com/564x/e9/6f/52/e96f525de3889e9b7510862318a4e2d9.jpg'
         price: '$40'
         feedCount: '15-20'
       ,
