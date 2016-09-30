@@ -6,7 +6,7 @@
     color $dark-gray
     &:hover
       cursor: pointer
-      color: $teal
+      color: $pink
 
   .item
     margin-bottom 0.5rem
@@ -15,18 +15,21 @@
       margin-left 0.5rem
 
   .category-items
-    display flex
-    flex-direction row
-    flex-wrap wrap
-    margin 2rem 1rem
+    clearfix()
+    margin 0.25rem 1rem
 
     .category-item
-      display flex
-      flex 1 0 auto
-      height 12rem
+      float left
+      margin 0.5rem
 
       img
-        width 14rem
+        border 2px solid $dark-gray
+        border-radius 4px
+        height 9rem
+        width 10rem
+
+        &:hover
+          border-color $blue
 
   .item-details
     margin-top 1rem
