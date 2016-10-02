@@ -1,25 +1,32 @@
 @import '../../../styles/variables.styl'
 
-.modal-background
+.modal-container
   align-items center
-  background rgba(0, 0, 0, 0.3)
   bottom 0
   display flex
-  justify-content center
   left 0
+  justify-content center
   position fixed
   right 0
   top 0
   z-index 2
 
+  .modal-mask
+    background rgba(0, 0, 0, 0.3)
+    height 100%
+    position fixed
+    right 0
+    top 0
+    width 100%
+
   .modal
     background white
-    border 2px solid $pink
+    border 1px solid $dark-gray
     z-index 3
 
     .modal-header
       background $dark-gray
-      color $pink
+      color white
       font-weight bold
       padding 1rem
 
@@ -28,7 +35,3 @@
 
         &:hover
           cursor pointer
-
-    .modal-content
-      padding 2rem
-
