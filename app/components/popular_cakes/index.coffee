@@ -33,7 +33,7 @@ PopularCakes = react.createClass
             @_renderCategories()
 
   _renderCategories: ->
-    div {},
+    div className: 'categories-container',
       h4 {}, 'Popular Cakes'
       h5 {}, 'Select a Category'
       div className: 'accordion',
@@ -92,12 +92,14 @@ PopularCakes = react.createClass
     @props.categoryContent?.getIn [@props.params.store_id, id, item]
 
   _renderBakerHeader: ->
-    {name} = @props.info.get @props.params.store_id
+    {name, website} = @props.info.get @props.params.store_id
     div className: 'baker-header',
+      div className: 'logo', style: background: 'url(http://www.womensmafia.com/wp-content/uploads/2011/12/Lady-M-Logo-JPEG.jpg)', ''
       div className: 'baker-info',
-        img src: 'https://scontent.xx.fbcdn.net/v/t1.0-1/c1.0.50.50/p50x50/282553_232862060087690_4214243_n.jpg?oh=cba6f9958c46b7f70377114a4057e7a7&oe=584327FC'
         h3 className: 'baker-name', name
         @_renderSocialMediaNav()
+        @_renderAddress()
+        a className: 'link', href: "http://#{website}", target: '_blank', 'Visit Website'
 
   _renderSocialMediaNav: ->
     {facebook, instagram, twitter} = @props.info.get @props.params.store_id
@@ -111,6 +113,14 @@ PopularCakes = react.createClass
       li {},
         a className: 'link', href: "http://www.twitter.com/#{twitter}", target: '_blank',
           i className: 'fa fa-twitter'
+
+  _renderAddress: ->
+    {address1, address2, city, state, zip, hours, telephone} = @props.info.get @props.params.store_id
+    div className: 'address',
+      div {}, "#{address1} #{address2}"
+      div {}, "#{city}, #{state} #{zip}"
+      div {}, "Hours: #{hours}"
+      div {}, "Tel: #{telephone}"
 
   _requestCategoryDetails: (id, index) ->
     updatedIndeces = @state.expandedIndeces

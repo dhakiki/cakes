@@ -14,7 +14,7 @@ Cart = react.createClass
       @props.dispatch fetchBakerLandingData storeId unless @props.info.get storeId
 
   render: ->
-    div className: 'cart',
+    div className: 'cart main-content',
       switch @props.status
         when 'error'
           div className: 'error-status',
