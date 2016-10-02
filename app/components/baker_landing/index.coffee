@@ -32,16 +32,15 @@ class LandingPage extends react.Component
                 a className: 'link', href: "http://#{website}", target: '_blank', 'Visit Website'
             div className: 'baker-actions',
               div className: 'actions',
-                #TODO: fix url to point to root without hax
-                a className: classnames('action-item', 'link'), href: "http://localhost:3000/1/popular-cakes",
+                a className: classnames('action-item', 'link'), href: "/1/popular-cakes",
                   div className: 'action-icon',
                     i className: 'fa fa-birthday-cake'
                   div className: 'label', 'View Popular Cakes'
-                a className: classnames('action-item', 'link'), href: "http://localhost:3000/1/cake-builder",
+                a className: classnames('action-item', 'link'), href: "/1/cake-builder",
                   div className: 'action-icon',
                     i className: 'fa fa-heart-o'
                   div className: 'label', 'Cake Builder'
-                a className: classnames('action-item', 'link'), href: "http://localhost:3000/1/custom-form",
+                a className: classnames('action-item', 'link'), href: "/1/custom-form",
                   div className: 'action-icon',
                     i className: 'fa fa-camera'
                   div className: 'label', 'Send Custom Form'
