@@ -28,7 +28,7 @@ class Root extends react.Component
         Route path: '/cart', component: Cart
         Route path: '/:store_id/welcome', component: BakerLanding
         Route path: '/:store_id/popular-cakes', component: PopularCakes
-        Route path: '/:store_id/cake-builder', component: CakeBuilder
+        Route path: '/:store_id/cake-builder/:step_num', component: CakeBuilder
         Route path: '/:store_id/custom-form', component: CustomForm
 
   render: ->
