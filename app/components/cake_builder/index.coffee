@@ -1,5 +1,5 @@
 react = require 'react'
-{div, h1} = react.DOM
+{div, h1, svg, ellipse, rect} = react.DOM
 classNames = require 'classnames'
 require './cake_builder.styl'
 
@@ -22,7 +22,10 @@ class CakeBuilder extends react.Component
         div className: 'step-text label', 'Review'
 
   _renderStepContents: ->
-    console.log 'hi'
+    svg className: 'test-svg',
+      rect x: '9', y: '54', width: '102', height: '50', fill: 'green'
+      ellipse cx:"60", cy:"60", rx:"50", ry:"25", stroke: 'green', strokeWidth: '4', fill: 'red'
+
 
   _isStepComplete: (step) ->
     parseInt(@props.params.step_num) >= step
