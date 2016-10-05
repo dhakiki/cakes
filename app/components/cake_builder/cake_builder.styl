@@ -20,7 +20,7 @@
       background $blue
 
     + .step::before
-      background lightgray
+      background inherit
       content ' '
       height 1rem
       left -10.25rem
@@ -28,9 +28,6 @@
       top 1.75rem
       width 10.75rem
       z-index -1
-
-    & + .step.filled::before
-      background $blue
 
   .steps-text
     clearfix()
