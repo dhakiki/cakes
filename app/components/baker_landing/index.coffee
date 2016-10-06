@@ -36,7 +36,7 @@ class LandingPage extends react.Component
                   div className: 'action-icon',
                     i className: 'fa fa-birthday-cake'
                   div className: 'label', 'View Popular Cakes'
-                a className: classnames('action-item', 'link'), href: "/1/cake-builder/1",
+                a className: classnames('action-item', 'link'), href: "/1/cake-builder",
                   div className: 'action-icon',
                     i className: 'fa fa-heart-o'
                   div className: 'label', 'Cake Builder'

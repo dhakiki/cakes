@@ -24,7 +24,6 @@ class Layout extends react.Component
               li className: 'link', onClick: (=> console.log 'clicked'), 'Create an Account'
               a className: 'link', href: "http://localhost:3000/cart",
                 li {}, "Cart (#{@_fetchCartTotal()})"
-
       div className: 'app-contents',
         this.props.children
 
