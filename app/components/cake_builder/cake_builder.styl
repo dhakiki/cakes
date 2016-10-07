@@ -1,5 +1,7 @@
 @import '../../styles/variables.styl'
 
+$editor-border = 2px solid $blue
+
 .cake-builder
   flex 1 0 auto
   display flex
@@ -67,6 +69,8 @@
         font-weight bold
 
   .editor
+    background $white
+    border $editor-border
     display flex
     flex 1 0 auto
     flex-direction row
@@ -79,8 +83,8 @@
       flex-direction column
 
       .cake-viewer
+        border-bottom $editor-border
         flex 2 1 7rem
-        background yellowgreen
         overflow auto
 
         .stuffa
@@ -88,13 +92,32 @@
 
       .cake-controls
         flex 1 0 3rem
-        background azure
         overflow auto
+        padding 0.5rem
 
         .stuffb
           height 17rem
 
     .cake-customization
+      border-left $editor-border
       flex 1 0 auto
-      background oldlace
+      display flex
+      flex-direction column
       overflow auto
+
+      .customization-actions
+        border-bottom $editor-border
+        flex none
+        padding 0.5rem
+
+        .actions
+          text-align center
+
+      .customization-selection
+        background $light-gray
+        flex 1 0 5rem
+        overflow auto
+        padding 0.5rem
+
+        .stuffc
+          height 100rem

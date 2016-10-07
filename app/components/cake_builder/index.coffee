@@ -3,6 +3,7 @@ react = require 'react'
 classNames = require 'classnames'
 require './cake_builder.styl'
 
+Button = react.createFactory require '../shared_components/button'
 CakeViewer = react.createFactory require './cake_viewer/'
 CakeBuilder = react.createClass
   getInitialState: ->
@@ -37,12 +38,18 @@ CakeBuilder = react.createClass
     console.log 'yo', @state.selectedShape
     div className: 'editor',
       div className: 'cake-editor',
-        div className: 'cake-viewer',
-          div className: 'stuffa'
-        div className: 'cake-controls',
-          div className: 'stuffb'
+        div className: 'cake-viewer'
+        div className: 'cake-controls'
       div className: 'cake-customization',
-        div className: 'stuffc'
+        div className: 'customization-actions',
+          div className: 'label', 'Actions'
+          div className: 'actions',
+            div {},
+              Button {}, 'Add Garnish'
+            div {},
+              Button {}, 'Add Arrangement'
+        div className: 'customization-selection',
+          div className: 'label', 'Selected Garnishes'
 
   _renderShapeSelector: ->
     div className: 'shape-selector',
