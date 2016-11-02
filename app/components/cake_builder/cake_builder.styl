@@ -1,0 +1,123 @@
+@import '../../styles/variables.styl'
+
+$editor-border = 2px solid $blue
+
+.cake-builder
+  flex 1 0 auto
+  display flex
+  flex-direction column
+
+  .step-viewer
+    flex none
+    justify-content center
+    margin 0 auto
+
+  .step
+    background lightgray
+    border-radius 100%
+    color white
+    display inline
+    font-size 1.75em
+    margin 5rem
+    padding 1rem 1.5rem
+    position relative
+
+    &.filled
+      background $blue
+
+    + .step::before
+      background inherit
+      content ' '
+      height 1rem
+      left -10.25rem
+      position absolute
+      top 1.75rem
+      width 10.75rem
+      z-index -1
+
+  .steps-text
+    clearfix()
+
+    .step-text
+      width 10rem
+      float left
+      text-align center
+      margin 2rem
+      font-size 1em
+
+  .shape-selector
+    clearfix()
+
+    .shape
+      border 0.2rem solid $blue
+      border-radius 0.5rem
+      display inline
+      float left
+      padding 1rem
+      margin 1rem
+      text-align center
+      width 9rem
+
+      &:hover
+        border-color $pink
+
+      .temp-cake
+        font-size 7rem
+
+      .shape-label
+        margin 1rem 0
+        font-weight bold
+
+  .editor
+    background $white
+    border $editor-border
+    display flex
+    flex 1 0 auto
+    flex-direction row
+    flex-wrap nowrap
+    overflow hidden
+
+    .cake-editor
+      display flex
+      flex 2 1 auto
+      flex-direction column
+
+      .cake-viewer
+        border-bottom $editor-border
+        flex 2 1 7rem
+        overflow auto
+
+        .stuffa
+          height 40rem
+
+      .cake-controls
+        flex 1 0 3rem
+        overflow auto
+        padding 0.5rem
+
+        .stuffb
+          height 17rem
+
+    .cake-customization
+      border-left $editor-border
+      flex 1 0 auto
+      display flex
+      flex-direction column
+      overflow auto
+
+      .customization-actions
+        border-bottom $editor-border
+        flex none
+        padding 0.5rem
+
+        .actions
+          text-align center
+
+      .customization-selection
+        background $light-gray
+        flex 1 0 5rem
+        overflow auto
+        padding 0.5rem
+
+        .stuffc
+          height 100rem

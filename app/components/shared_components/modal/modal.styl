@@ -1,0 +1,37 @@
+@import '../../../styles/variables.styl'
+
+.modal-container
+  align-items center
+  bottom 0
+  display flex
+  left 0
+  justify-content center
+  position fixed
+  right 0
+  top 0
+  z-index 2
+
+  .modal-mask
+    background rgba(0, 0, 0, 0.3)
+    height 100%
+    position fixed
+    right 0
+    top 0
+    width 100%
+
+  .modal
+    background white
+    border 1px solid $dark-gray
+    z-index 3
+
+    .modal-header
+      background $dark-gray
+      color white
+      font-weight bold
+      padding 1rem
+
+      .close
+        float right
+
+        &:hover
+          cursor pointer

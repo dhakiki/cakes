@@ -1,0 +1,28 @@
+@import '../../styles/variables.styl'
+
+.cart
+
+  .baker-cart-items
+    border-collapse collapse
+    display table
+    width 100%
+
+  .cart-item
+    display table-row
+    border 1px solid $pink
+    margin 0.5rem
+
+  .item-category
+    display table-cell
+    vertical-align top
+    padding 0.5rem
+
+    &.image
+      img
+        max-width 125px
+
+    &.action
+      background white
+      border-left 1px solid $pink
+      text-align center
+      vertical-align middle

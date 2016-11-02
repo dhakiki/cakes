@@ -1,0 +1,55 @@
+@import '../../styles/variables.styl'
+
+.popular-cakes
+  .link
+    color $dark-gray
+    &:hover
+      cursor: pointer
+      color: $pink
+
+  .baker-contents
+    .baker-header
+      margin 1.5rem 5rem
+      clearfix()
+
+      .baker-info
+        display inline
+        float left
+
+        .baker-name
+          margin-bottom 0
+
+        .address
+          line-height 1.25em
+          margin 0.5rem 0
+          font-size 0.75em
+
+  .categories-container
+    padding 0 5rem
+
+  .item
+    margin-bottom 0.5rem
+
+    .category
+      margin-left 0.5rem
+
+  .category-items
+    clearfix()
+    margin 0.25rem 1rem
+
+    .category-item
+      float left
+      margin 0.5rem
+
+      img
+        border 2px solid $dark-gray
+        border-radius 4px
+        height 9rem
+        width 10rem
+
+        &:hover
+          border-color $blue
+
+  .item-details
+    margin-top 1rem
+    text-align center
